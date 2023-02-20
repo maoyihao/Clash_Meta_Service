@@ -1,0 +1,49 @@
+mixed-port: 10800
+allow-lan: true
+geodata-mode: true
+unified-delay: true
+mode: rule
+log-level: info
+ipv6: false
+profile:
+  store-fake-ip: true
+tun:
+  enable: true
+  device: Meta
+  stack: system
+  dns-hijack:
+    - 198.18.0.2:53
+  macOS-auto-route: true
+  macOS-auto-detect-interface: true
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 0.0.0.0:53
+  proxy-server-nameserver:
+    - 114.114.114.114
+  nameserver:
+  - 'quic://dns.maoyihao.site:853#maoyihao'
+  default-nameserver:
+  - '10.0.0.1#maoyihao'
+  fake-ip-filter:
+  - 'dns.msftncsi.com'
+  - 'www.msftncsi.com'
+  - 'www.msftconnecttest.com'
+proxies:
+proxy-providers:
+  maoyihao:
+    type: file
+    path: ./maoyihao.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+proxy-groups:
+  - name: maoyihao
+    type: select
+    use: 
+      - maoyihao
+rules:
+  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+  - MATCH,maoyihao
