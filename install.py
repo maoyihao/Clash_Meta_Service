@@ -37,7 +37,7 @@ def install():
     print('从服务器下载文件……\n')
 
     try:
-        download('', os.path.join(user_path, "clash.exe"))
+        download('https://github.com/maoyihao/Clash_Meta_Service/releases/download/release/clash_meta.exe', os.path.join(user_path, "clash.exe"))
     except PermissionError:
         notification('没有文件读写权限，也许是软件未以管理员身份运行或服务已在运行', 8)
         sys.exit()
