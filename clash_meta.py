@@ -25,11 +25,11 @@ class clash(win32serviceutil.ServiceFramework):
 
         core = os.path.join(self.user_path, ".config", "clash.meta-windows-amd64.exe")
         config = os.path.join(self.user_path, ".config", "clash_meta")
-        download('', core)
-        download('', os.path.join(config, "Country.mmdb"))
-        download('', os.path.join(config, "GeoIP.dat"))
-        download('', os.path.join(config, "GeoSite.dat"))
-        download('', os.path.join(config, "config.yaml"))
+        download('https://raw.githubusercontent.com/maoyihao/Clash_Meta_Service/master/clash/clash.meta-windows-amd64.exe', core)
+        download('https://raw.githubusercontent.com/maoyihao/Clash_Meta_Service/master/clash/Country.mmdb', os.path.join(config, "Country.mmdb"))
+        download('https://raw.githubusercontent.com/maoyihao/Clash_Meta_Service/master/clash/GeoIP.dat', os.path.join(config, "GeoIP.dat"))
+        download('https://raw.githubusercontent.com/maoyihao/Clash_Meta_Service/master/clash/GeoSite.dat', os.path.join(config, "GeoSite.dat"))
+        download('https://raw.githubusercontent.com/maoyihao/Clash_Meta_Service/master/clash/config.yaml', os.path.join(config, "config.yaml"))
 
         win32event.SetEvent(self.start_event)
 
